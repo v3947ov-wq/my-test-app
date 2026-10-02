@@ -1,31 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Черемша</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #2e7d32, #66bb6a);
-      font-family: Arial, sans-serif;
-    }
-    .banner {
-      background: white;
-      padding: 40px 80px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      font-size: 48px;
-      font-weight: bold;
-      color: #2e7d32;
-      text-align: center;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>turbo studio — прямые брони для отелей и школ в Муйне</title>
+<meta name="description" content="Сайт, онлайн-бронь, бот и репутация для бизнеса в Муйне. Открытые цены. Посчитайте, сколько вы платите Booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ocean:#0B1F2A;--wind:#3E7C9A;--coral:#E8835A;--sand:#F2EDE4;--ink:#10252F;--max:1120px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.6 Inter,system-ui,sans-serif;background:var(--sand);color:var(--ink)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.1}
+img{display:block;max-width:100%}
+a{color:inherit}
+.w{max-width:var(--max);margin:0 auto;padding:0 20px}
+.btn{display:inline-block;background:var(--coral);color:#fff;font-weight:600;border:0;border-radius:6px;padding:14px 22px;font-size:16px;text-decoration:none;cursor:pointer}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--wind);outline-offset:2px}
+.btn.ghost{background:none;border:1.5px solid currentColor}
+nav{position:absolute;top:0;left:0;right:0;z-index:2;color:#fff}
+nav .w{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px}
+.logo{font:700 22px Fraunces,serif;text-decoration:none}
+nav a.c{font-size:15px;text-decoration:none;opacity:.9}
+.hero{position:relative;color:#fff;background:linear-gradient(180deg,rgba(11,31,42,.55),rgba(11,31,42,.88)),url(images/hero.jpg) center 62%/cover;background-color:var(--ocean);padding:110px 0 70px}
+.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(36px,5.4vw,64px)}
+.hero p.sub{margin:22px 0 0;max-width:46ch;font-size:19px;opacity:.9}
+.hero .place{margin-top:34px;font-size:14px;opacity:.7}
+.calc{background:var(--sand);color:var(--ink);border-radius:10px;padding:26px}
+.calc h2{font-size:22px;margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:500;margin:12px 0 4px}
+input,select{width:100%;font:inherit;padding:11px 12px;border:1.5px solid #c9c0b0;border-radius:6px;background:#fff}
+.out{margin-top:18px;padding-top:16px;border-top:2px dashed #c9c0b0}
+.out .big{font:700 clamp(34px,5vw,46px)/1 Fraunces,serif;color:var(--coral)}
+.out p{margin-top:8px;font-size:15px}
+.calc .btn{width:100%;margin-top:16px;text-align:center}
+section{padding:80px 0}
+h2.t{font-size:clamp(28px,3.6vw,42px);margin-bottom:12px}
+.lead{max-width:56ch;margin-bottom:36px;opacity:.85}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.strip figure{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px}
+.strip img{width:100%;height:100%;object-fit:cover}
+figcaption{position:absolute;left:12px;bottom:10px;color:#fff;font-size:13px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.menu{background:var(--ocean);color:var(--sand)}
+.menu .lead{opacity:.75}
+.row{display:grid;grid-template-columns:2.2fr 1fr;gap:10px 28px;padding:24px 0;border-top:1px solid rgba(242,237,228,.22)}
+.row h3{font-size:24px}
+.row .for{font-size:14px;color:#9fc3d6;margin:4px 0 10px}
+.row ul{padding-left:18px;font-size:15px;opacity:.9}
+.price{text-align:right}
+.price b{font:700 30px Fraunces,serif}
+.price span{display:block;font-size:14px;opacity:.75}
+.opts{margin-top:26px;font-size:15px;opacity:.8}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.two img{border-radius:4px;max-height:520px;width:100%;object-fit:cover}
+.no li{margin:8px 0;list-style:none}
+.no li:before{content:"— "}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
+.nums b{display:block;font:700 40px Fraunces,serif;color:var(--wind)}
+.nums span{font-size:15px}
+.pilot{background:var(--wind);color:#fff}
+.pilot .btn{margin-top:18px}
+.final{position:relative;color:#fff;background:linear-gradient(rgba(11,31,42,.8),rgba(11,31,42,.9)),url(images/dunes.jpg) center/cover;background-color:var(--ocean)}
+.final .w{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+form{background:var(--sand);color:var(--ink);padding:26px;border-radius:10px}
+.ct a{display:block;margin:6px 0;font-size:18px}
+.msg{margin-top:12px;font-size:15px}
+footer{padding:26px 0;font-size:14px;opacity:.7}
+@media(max-width:820px){.hero .w,.two,.final .w{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr}.nums{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}.price{text-align:left}.hero{padding-top:90px}section{padding:56px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <div class="banner">🌿 Черемша</div>
+<nav><div class="w"><a class="logo" href="#">turbo studio</a><a class="c" href="#contact">Получить аудит</a></div></nav>
+
+<header class="hero"><div class="w">
+  <div>
+    <h1>Хватит платить 15% за бронь, которую можно получить напрямую.</h1>
+    <p class="sub">Сайт, онлайн-бронь, бот в WhatsApp и репутация для отелей, кайт-школ и ресторанов Муйне. Цены открыты, посчитайте сами.</p>
+    <p class="place">Муйне, закат. Мы здесь живём и работаем.</p>
+  </div>
+  <div class="calc" id="calc">
+    <h2>Сколько вы платите Booking?</h2>
+    <label for="n">Броней через Booking в месяц</label>
+    <input id="n" type="number" min="0" value="30" inputmode="numeric">
+    <label for="chk">Средний чек одной брони, $</label>
+    <input id="chk" type="number" min="0" value="250" inputmode="numeric">
+    <label for="rate">Комиссия площадки</label>
+    <select id="rate"><option value="0.15">15%</option><option value="0.18">18%</option></select>
+    <div class="out" aria-live="polite">
+      <div class="big" id="yr">$0</div>
+      <p id="txt"></p>
+    </div>
+    <a class="btn" href="#contact">Получить аудит</a>
+  </div>
+</div></header>
+
+<section><div class="w">
+  <h2 class="t">Муйне ищут по фото. Покажите себя.</h2>
+  <p class="lead">Визуал входит в каждый пакет: съёмочный день, фото и 2–3 вертикальных видео, которые работают на сайте, в Instagram и на Google Maps.</p>
+  <div class="strip">
+    <figure><img src="images/palms.jpg" alt="Пальмы и лодки-корзины на пляже Муйне" loading="lazy"><figcaption>Муйне, лодки-корзины</figcaption></figure>
+    <figure><img src="images/boats.jpg" alt="Пальмы и лодки у горизонта" loading="lazy"><figcaption>Муйне, берег</figcaption></figure>
+    <figure><img src="images/pho.jpg" alt="Миска фо с говядиной" loading="lazy"><figcaption>Фо на обед, как у местных</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="menu" id="prices"><div class="w">
+  <h2 class="t">Пакеты и цены</h2>
+  <p class="lead">Минимальный срок 3 месяца, предоплата 50%. Рекламный бюджет оплачивается отдельно.</p>
+  <div class="row"><div><h3>Сайт, бронь и бот</h3><div class="for">Кайт-школы, отели, рестораны</div><ul><li>Сайт с ценами на RU и EN</li><li>Онлайн-бронь с предоплатой</li><li>WhatsApp-бот: ответы, запись, напоминания</li><li>Карточка Google в порядке, съёмка и 15–20 фото</li></ul></div><div class="price"><b>$650</b><span>разово + $300 / мес</span></div></div>
+  <div class="row"><div><h3>Русский рынок</h3><div class="for">Отели и рестораны с русскими гостями</div><ul><li>RU-версия сайта и меню</li><li>Бот в WhatsApp и Telegram с переводом</li><li>Реклама в Meta на русскоязычных гостей</li><li>Фотосессия под RU-аудиторию, 2–3 Reels</li></ul></div><div class="price"><b>$900</b><span>разово + $300 / мес</span></div></div>
+  <div class="row"><div><h3>Репутация</h3><div class="for">Все, кто зависит от отзывов</div><ul><li>Ответы на все отзывы</li><li>Автосбор отзывов после визита</li><li>Недовольных решаем до публичного отзыва</li><li>Отчёт по рейтингу каждый месяц</li></ul></div><div class="price"><b>$350</b><span>в месяц</span></div></div>
+  <div class="row"><div><h3>Лидоген для большого чека</h3><div class="for">Недвижимость, стоматология, клиники, образование</div><ul><li>Лендинг на RU и EN</li><li>Лид-формы и квиз в Meta</li><li>CRM и бот, который квалифицирует лида</li><li>Премиальные фото, видео-тур</li></ul></div><div class="price"><b>$1000</b><span>разово + $600 / мес</span></div></div>
+  <p class="opts">Дополнительно: усиленный визуал $150–250, Telegram-чаты $100–200/мес, инфлюенсеры $150–300/мес, TikTok Ads $200–300/мес, Google Ads $200–400/мес.</p>
+</div></section>
+
+<section><div class="w two">
+  <div>
+    <h2 class="t">Чего мы не делаем</h2>
+    <ul class="no">
+      <li>Не пишем посты ради постов</li>
+      <li>Не снимаем 10 роликов, когда хватает трёх</li>
+      <li>Не прячем цены «по запросу»</li>
+      <li>Не говорим «синергия»</li>
+    </ul>
+  </div>
+  <img src="images/sign.jpg" alt="Деревянный указатель Mui Né, Be Happy, Vibes" loading="lazy">
+</div></section>
+
+<section><div class="w nums">
+  <div><b>0</b><span>лайков ради лайков</span></div>
+  <div><b>24 ч</b><span>аудит вашего бизнеса</span></div>
+  <div><b>48 ч</b><span>от договора до запуска</span></div>
+  <div><b>2</b><span>человека, вы говорите с теми, кто делает</span></div>
+</div></section>
+
+<section class="pilot"><div class="w">
+  <h2 class="t">3 пилотных места</h2>
+  <p class="lead">Первые три клиента получают скидку 50% на первый месяц и становятся нашими кейсами. Сезон начинается, места не резиновые.</p>
+  <a class="btn" href="#contact" style="background:var(--ocean)">Занять место</a>
+</div></section>
+
+<section class="final" id="contact"><div class="w">
+  <div>
+    <h2 class="t">Получить аудит</h2>
+    <p class="lead">Разберём сайт, карточку Google, отзывы и скорость ответа в мессенджере. Пришлём PDF с выводами за 24 часа.</p>
+    <div class="ct">
+      <a href="https://zalo.me/84876021381">Zalo / телефон: +84 876 021 381</a>
+      <a href="https://wa.me/79521234777">WhatsApp: +7 952 123 47 77</a>
+    </div>
+  </div>
+  <form id="f">
+    <label for="name">Имя</label><input id="name" name="name" required>
+    <label for="biz">Бизнес</label><input id="biz" name="business" required>
+    <label for="lnk">Ссылка на Instagram или Google Maps</label><input id="lnk" name="link" required>
+    <label for="cnt">Как с вами связаться (Zalo, WhatsApp, Telegram)</label><input id="cnt" name="contact" required>
+    <button class="btn" type="submit" style="width:100%;margin-top:16px">Получить аудит</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+</div></section>
+
+<footer><div class="w">turbo studio, Муйне</div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=v=>"$"+Math.round(v).toLocaleString("ru-RU");
+function calc(){
+  const n=+$("n").value||0, c=+$("chk").value||0, r=+$("rate").value;
+  const yr=n*c*12*r, per=c*r;
+  $("yr").textContent=fmt(yr);
+  $("txt").textContent=per>0
+    ? `Столько вы отдаёте Booking за год. С каждой брони уходит ${fmt(per)}. Пакет «Сайт, бронь и бот» ($650) окупится за ${Math.ceil(650/per)} прямых броней.`
+    : "Введите данные, чтобы увидеть цифру.";
+}
+["n","chk","rate"].forEach(i=>$(i).addEventListener("input",calc));calc();
+$("f").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const m=$("msg");m.textContent="Отправляем...";
+  const d=Object.fromEntries(new FormData(e.target));
+  d.calc=`${$("n").value} броней x $${$("chk").value}, комиссия ${$("rate").value*100}%, за год ${$("yr").textContent}`;
+  try{
+    const r=await fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)});
+    if(!r.ok)throw 0;
+    m.textContent="Заявка отправлена. Напишем в течение дня.";e.target.reset();
+  }catch(_){m.textContent="Не отправилось. Напишите нам в WhatsApp или Zalo, номера слева.";}
+});
+</script>
 </body>
 </html>
